@@ -6,7 +6,7 @@ from The Odin Project's [curriculum](https://www.theodinproject.com/paths/full-s
 
 ## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was build with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

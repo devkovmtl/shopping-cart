@@ -1,9 +1,13 @@
 import React from 'react';
+import { Header } from './components';
+import { Home, ShoppingList } from './containers';
 
 function App() {
   return (
     <div className='App'>
-      <h1>My Shopping App</h1>
+      <Header />
+      <Home />
+      <ShoppingList />
     </div>
   );
 }
