@@ -99,6 +99,9 @@ const MobileNav = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media (min-width: 500px) {
+    display: none;
+  }
 `;
 
 const MobileNavLink = styled.li`
