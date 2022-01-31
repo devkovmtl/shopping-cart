@@ -1,20 +1,17 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Header } from './components';
-import { Home, ShoppingList, Cart, ShoppingItemDetails } from './containers';
+
+import { Layout, ShoppingList, Cart, ShoppingItemDetails } from './containers';
 
 function App() {
   return (
-    <div className='App'>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='shops' element={<ShoppingList />}>
-          <Route path=':itemId' element={<ShoppingItemDetails />} />
-        </Route>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route path='shops' element={<ShoppingList />} />
+        <Route path='shops/:itemId' element={<ShoppingItemDetails />} />
         <Route path='cart' element={<Cart />} />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   fetchShoppingItems,
@@ -7,6 +8,7 @@ import {
 import { ItemCard } from '../../components';
 
 const ShoppingList = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const items = useAppSelector(selectAllShoppingItems);
   const itemsStatus = useAppSelector((state) => state.shoppingReducer.status);
@@ -22,7 +24,11 @@ const ShoppingList = () => {
   if (itemsStatus === 'loading') {
     content = <p>Loading...</p>;
   } else if (itemsStatus === 'succeeded') {
-    content = items.map((item) => <p key={item.id}>{item.description}</p>);
+    content = items.map((item) => (
+      <div key={item.id} onClick={(e) => navigate(`/shops/${item.id}`)}>
+        <p>{item.description}</p>
+      </div>
+    ));
   } else if (itemsStatus === 'failed') {
     content = <div>Sorry Error</div>;
   } else {
