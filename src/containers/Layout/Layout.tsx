@@ -1,7 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Home } from '..';
 import { Header } from '../../components';
+
+const MainContainer = styled.div`
+  background: orange;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ContentContainer = styled.div`
+  margin-top: 94px;
+`;
 
 const Layout = () => {
   const location = useLocation();
@@ -16,10 +28,10 @@ const Layout = () => {
   }
 
   return (
-    <div>
+    <MainContainer>
       <Header />
-      <div>{content}</div>
-    </div>
+      <ContentContainer>{content}</ContentContainer>
+    </MainContainer>
   );
 };
 

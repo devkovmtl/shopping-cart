@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import './index.css';
+import { GlobalStyles } from './global-styles';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,6 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <GlobalStyles />
         <App />
       </BrowserRouter>
     </Provider>
