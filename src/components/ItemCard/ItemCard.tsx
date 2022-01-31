@@ -1,9 +1,16 @@
 import React from 'react';
+import { Iitem } from '../../interface';
 
-const ItemCard = () => {
+interface ItemCardProps {
+  item: Iitem;
+}
+
+const ItemCard = ({ item }: ItemCardProps) => {
   return (
-    <div>
-      <h1>Item Card</h1>
+    <div id={`${item.id}`}>
+      <h1>{item.title}</h1>
+      <img src={`${item.image}`} alt={`${item.title}`} />
+      <p>{item.price}</p>
     </div>
   );
 };

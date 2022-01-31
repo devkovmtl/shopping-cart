@@ -1,4 +1,4 @@
-export interface Iitems {
+export interface Iitem {
   id: number;
   title: string;
   price: string;
@@ -8,7 +8,7 @@ export interface Iitems {
 }
 
 export interface IinitialShoppingList {
-  items: Iitems[];
+  items: Iitem[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }

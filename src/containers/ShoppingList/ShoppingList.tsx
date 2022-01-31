@@ -26,7 +26,7 @@ const ShoppingList = () => {
   } else if (itemsStatus === 'succeeded') {
     content = items.map((item) => (
       <div key={item.id} onClick={(e) => navigate(`/shops/${item.id}`)}>
-        <p>{item.description}</p>
+        <ItemCard item={item} />
       </div>
     ));
   } else if (itemsStatus === 'failed') {
