@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiMenu, HiOutlineShoppingCart } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
-import { is } from 'immer/dist/internal';
+
 const HeaderContainer = styled.div`
   background: black;
   color: white;
@@ -43,9 +43,14 @@ const Nav = styled.ul`
 const NavLink = styled.li`
   margin: 0px 8px;
   padding: 8px 12px;
-  border-bottom: 2px solid transparent;
+  border-radius: 10px;
+
   &:hover {
-    border-bottom: 2px solid #a9a9a9;
+    background: #a9a9a9;
+  }
+
+  &:hover > a {
+    color: black;
   }
 `;
 
@@ -94,10 +99,6 @@ const MobileNav = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  @media (min-width: 500px) {
-    display: none;
-  }
 `;
 
 const MobileNavLink = styled.li`
