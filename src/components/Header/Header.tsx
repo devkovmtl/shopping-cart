@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiMenu, HiOutlineShoppingCart } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
+import { is } from 'immer/dist/internal';
 const HeaderContainer = styled.div`
   background: black;
   color: white;
@@ -81,8 +83,58 @@ const MenuButtonCart = styled(MenuButton)`
   }
 `;
 
+const MobileNav = styled.ul`
+  background: rgb(0 0 0 / 75%);
+  position: absolute;
+  top: 94px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 500px) {
+    display: none;
+  }
+`;
+
+const MobileNavLink = styled.li`
+  padding: 18px 12px;
+  border-radius: 12px;
+  width: 110px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 12px;
+
+  & > a {
+    font-size: 18px;
+  }
+
+  &:hover {
+    background: #a9a9a9;
+    cursor: pointer;
+  }
+
+  &:hover > a {
+    color: black;
+  }
+`;
+
 const Header = () => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMobilLinkClick = (e: React.MouseEvent, path: string) => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+    navigate(path);
+  };
+
   return (
     <HeaderContainer>
       <HeaderTitle>MyShop</HeaderTitle>
@@ -98,9 +150,23 @@ const Header = () => {
           <HiOutlineShoppingCart size={'24'} />
         </MenuButtonCart>
       </Nav>
-      <MenuButton>
-        <HiMenu size={'24'} />
+      <MenuButton onClick={(e) => setIsOpen(!isOpen)}>
+        {isOpen ? <AiOutlineClose size={'24'} /> : <HiMenu size={'24'} />}
       </MenuButton>
+
+      {isOpen ? (
+        <MobileNav>
+          <MobileNavLink onClick={(e) => handleMobilLinkClick(e, '/')}>
+            Home
+          </MobileNavLink>
+          <MobileNavLink onClick={(e) => handleMobilLinkClick(e, '/shops')}>
+            Shops
+          </MobileNavLink>
+          <MobileNavLink onClick={(e) => handleMobilLinkClick(e, '/cart')}>
+            Cart
+          </MobileNavLink>
+        </MobileNav>
+      ) : null}
     </HeaderContainer>
   );
 };
