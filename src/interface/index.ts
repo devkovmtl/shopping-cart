@@ -12,3 +12,8 @@ export interface IinitialShoppingList {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
+
+export interface IinitialCartState {
+  itemsOrdered: Iitem[];
+  total: 0;
+}

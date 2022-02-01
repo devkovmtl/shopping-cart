@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { add } from '../../containers/Cart/cartSlice';
 import { Iitem } from '../../interface';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -54,7 +56,10 @@ interface ItemCardProps {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => {
-  const handleAddToCard = (e: React.MouseEvent) => {};
+  const dispatch = useAppDispatch();
+  const handleAddToCard = (e: React.MouseEvent) => {
+    dispatch(add(item));
+  };
 
   return (
     <Card id={`${item.id}`}>
