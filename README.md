@@ -8,6 +8,15 @@ from The Odin Project's [curriculum](https://www.theodinproject.com/paths/full-s
 
 This project was build with [Create React App](https://github.com/facebook/create-react-app).
 
+## Build With
+
+- React
+- Reduxjs/toolkit
+- React Router Dom
+- Styled-components
+- Axios
+- Fake Store Api
+
 ## Available Scripts
 
 In the project directory, you can run:
