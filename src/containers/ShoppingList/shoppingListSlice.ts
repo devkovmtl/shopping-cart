@@ -12,7 +12,9 @@ const initialState: IinitialShoppingList = {
 export const fetchShoppingItems = createAsyncThunk(
   'shopping/fetchShoppingItems',
   async () => {
-    const response = await axios.get('https://fakestoreapi.com/products');
+    const response = await axios.get(
+      "https://fakestoreapi.com/products/category/men's clothing"
+    );
     return response.data;
   }
 );
