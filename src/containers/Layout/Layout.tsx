@@ -12,7 +12,7 @@ const MainContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  margin-top: 94px;
+  margin-top: 112px;
 `;
 
 const Layout = () => {

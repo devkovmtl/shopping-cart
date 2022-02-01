@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiMenu, HiOutlineShoppingCart } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -7,7 +7,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 const HeaderContainer = styled.div`
   background: black;
   color: white;
-  height: 94px;
+  height: 112px;
   padding: 18px 24px;
   display: flex;
   flex-direction: row;
@@ -25,6 +25,7 @@ const HeaderContainer = styled.div`
 
 const HeaderTitle = styled.h1`
   font-family: 'Dancing Script', cursive;
+  font-size: 58px;
 `;
 
 const Nav = styled.ul`
@@ -78,6 +79,7 @@ const MenuButtonCart = styled(MenuButton)`
   height: 35px;
   width: 35px;
   border-radius: 50%;
+  margin-left: 16px;
 
   &:hover {
     color: black;
@@ -89,9 +91,9 @@ const MenuButtonCart = styled(MenuButton)`
 `;
 
 const MobileNav = styled.ul`
-  background: rgb(0 0 0 / 75%);
+  background: rgb(0 0 0 / 90%);
   position: absolute;
-  top: 94px;
+  top: 112px;
   left: 0;
   width: 100%;
   height: 100vh;
@@ -105,6 +107,7 @@ const MobileNav = styled.ul`
 `;
 
 const MobileNavLink = styled.li`
+  background: rgb(0 0 0 / 90%);
   padding: 18px 12px;
   border-radius: 12px;
   width: 110px;
@@ -113,6 +116,7 @@ const MobileNavLink = styled.li`
   align-items: center;
   justify-content: start;
   margin-bottom: 12px;
+  border: 2px solid #a9a9a9;
 
   & > a {
     font-size: 18px;
@@ -121,9 +125,6 @@ const MobileNavLink = styled.li`
   &:hover {
     background: #a9a9a9;
     cursor: pointer;
-  }
-
-  &:hover > a {
     color: black;
   }
 `;
