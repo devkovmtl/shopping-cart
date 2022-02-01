@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Home } from '..';
-import { Header } from '../../components';
+import { Header, Footer } from '../../components';
 
 const MainContainer = styled.div`
   background: orange;
@@ -13,6 +13,7 @@ const MainContainer = styled.div`
 
 const ContentContainer = styled.div`
   margin-top: 112px;
+  flex: 1;
 `;
 
 const Layout = () => {
@@ -31,6 +32,7 @@ const Layout = () => {
     <MainContainer>
       <Header />
       <ContentContainer>{content}</ContentContainer>
+      <Footer />
     </MainContainer>
   );
 };
