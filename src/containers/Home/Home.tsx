@@ -12,24 +12,33 @@ const HomeContainer = styled.div`
   margin: auto;
 `;
 
-const InfoContainer = styled.div``;
+const InfoContainer = styled.div`
+  height: 100%;
+  margin-left: 24px;
+  padding-top: 48px;
+  & > * {
+    margin: 24px 0;
+  }
+`;
 
-const SubTitle = styled.h3``;
+const Title = styled.h1`
+  font-family: 'Dancing Script', cursive;
+  font-size: 58px;
+  padding-right: 24px;
+`;
 
 const ImageContainer = styled.div`
   background: white;
   border-radius: 50px;
-  display: flex;
   align-items: center;
   justify-items: center;
   padding: 6px;
-
-  @media (min-width: 500px) {
-    width: 275px;
-  }
+  margin-left: 64px;
+  display: none;
 
   @media (min-width: 640px) {
     width: 480px;
+    display: flex;
   }
 `;
 
@@ -39,14 +48,27 @@ const Image = styled.img`
   border-radius: 50px;
 `;
 
+const HomeButton = styled.button`
+  background: black;
+  color: white;
+  border-radius: 24px;
+  padding: 16px 48px;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Home = () => {
   const navigate = useNavigate();
   return (
     <HomeContainer>
       <InfoContainer>
-        <SubTitle>Top online store of the year</SubTitle>
-        <h1>Everything you need for your style</h1>
-        <button onClick={(e) => navigate('/shops')}>Shop now</button>
+        <Title>
+          Everything you need <br /> for your style
+        </Title>
+        <HomeButton onClick={(e) => navigate('/shops')}>Shop now</HomeButton>
       </InfoContainer>
 
       <ImageContainer>
