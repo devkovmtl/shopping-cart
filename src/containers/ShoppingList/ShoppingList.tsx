@@ -6,7 +6,7 @@ import {
   fetchShoppingItems,
   selectAllShoppingItems,
 } from './shoppingListSlice';
-import { ItemCard } from '../../components';
+import { ItemCard, Spinner } from '../../components';
 
 const Container = styled.div`
   width: 80%;
@@ -50,7 +50,7 @@ const ShoppingList = () => {
   let content;
 
   if (itemsStatus === 'loading') {
-    content = <p>Loading...</p>;
+    content = <Spinner />;
   } else if (itemsStatus === 'succeeded') {
     content = (
       <GridContainer>
