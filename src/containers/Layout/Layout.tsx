@@ -5,7 +5,7 @@ import { Home } from '..';
 import { Header, Footer } from '../../components';
 
 const MainContainer = styled.div`
-  background: orange;
+  background: #ffa50073;
   height: 100%;
   display: flex;
   flex-direction: column;
