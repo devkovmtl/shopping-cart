@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.js": "/shopping-cart/static/js/main.8f63a252.js",
+    "static/js/787.d6fe38e8.chunk.js": "/shopping-cart/static/js/787.d6fe38e8.chunk.js",
+    "static/media/pexels-terje-sollie-298863.jpg": "/shopping-cart/static/media/pexels-terje-sollie-298863.7396b7af17c5d0222570.jpg",
+    "index.html": "/shopping-cart/index.html",
+    "main.8f63a252.js.map": "/shopping-cart/static/js/main.8f63a252.js.map",
+    "787.d6fe38e8.chunk.js.map": "/shopping-cart/static/js/787.d6fe38e8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8f63a252.js"
+  ]
+}
