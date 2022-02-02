@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Iitem } from '../../interface';
 import { RootState } from '../../store';
 import { IinitialCartState } from '../../interface';
 
 const initialState: IinitialCartState = {
-  total: 0,
+  totalNbrArticles: 0,
+  totalAmount: 0,
   itemsOrdered: [],
 };
 
@@ -13,25 +14,67 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<Iitem>) => {
-      state.total += action.payload.price;
-      const exist = state.itemsOrdered.find(
-        (item) => item.id === action.payload.id
+      const itemIsAlreadyInCart = state.itemsOrdered.find(
+        (item) => item.item.id === action.payload.id
       );
 
-      state.itemsOrdered = state.itemsOrdered.concat(action.payload);
+      if (!itemIsAlreadyInCart) {
+        state.itemsOrdered = state.itemsOrdered.concat({
+          item: action.payload,
+          quantity: 1,
+        });
+      }
+      if (itemIsAlreadyInCart) {
+        state.itemsOrdered = [
+          ...state.itemsOrdered.map((item) => {
+            if (item.item.id === action.payload.id) {
+              return {
+                item: item.item,
+                quantity: item.quantity + 1,
+              };
+            }
+            return item;
+          }),
+        ];
+      }
+      state.totalNbrArticles += 1;
+      state.totalAmount += action.payload.price;
     },
     remove: (state, action: PayloadAction<Iitem>) => {
-      state.total -= action.payload.price;
-      state.itemsOrdered = state.itemsOrdered.filter(
-        (item) => item.id !== action.payload.id
-      );
+      const { item, quantity } = state.itemsOrdered.filter(
+        (el) => el.item.id === action.payload.id
+      )[0];
+      if (quantity <= 1) {
+        state.itemsOrdered = state.itemsOrdered.filter(
+          (el) => el.item.id !== action.payload.id
+        );
+      }
+      if (quantity > 1) {
+        state.itemsOrdered = [
+          ...state.itemsOrdered.map((element) => {
+            if (element.item.id === action.payload.id) {
+              return {
+                item: element.item,
+                quantity: (element.quantity -= 1),
+              };
+            } else {
+              return element;
+            }
+          }),
+        ];
+      }
+
+      state.totalNbrArticles -= 1;
+      state.totalAmount -= item.price;
     },
   },
 });
 
 export const { add, remove } = cartSlice.actions;
 
-export const total = (state: RootState) => state.cartReducer.total;
+export const totalAmount = (state: RootState) => state.cartReducer.totalAmount;
+export const totalNbrArticles = (state: RootState) =>
+  state.cartReducer.totalNbrArticles;
 
 export const itemsOrdered = (state: RootState) =>
   state.cartReducer.itemsOrdered;

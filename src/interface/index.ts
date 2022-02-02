@@ -13,7 +13,18 @@ export interface IinitialShoppingList {
   error: string | null;
 }
 
+export interface Quantity {
+  id: number;
+  quantity: number;
+}
+
+export interface IitemsOrdered {
+  quantity: number;
+  item: Iitem;
+}
+
 export interface IinitialCartState {
-  itemsOrdered: Iitem[];
-  total: 0;
+  itemsOrdered: IitemsOrdered[];
+  totalNbrArticles: 0;
+  totalAmount: 0;
 }

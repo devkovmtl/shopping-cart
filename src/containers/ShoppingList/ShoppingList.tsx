@@ -21,7 +21,7 @@ const GridContainer = styled.div`
   gap: 20px;
 
   @media only screen and (max-width: 860px) {
-    grid-template-columns: repeat(2, minmax(min-content, 200px));
+    grid-template-columns: repeat(2, minmax(min-content, 275px));
     justify-content: center;
     row-gap: 50px;
     padding: 20px;

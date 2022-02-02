@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { add, remove, totalAmount } from './cartSlice';
 import { ButtonCard } from '../../components/ItemCard/ItemCard';
+import { Iitem } from '../../interface';
+
 const CartContainer = styled.div`
   height: 100%;
   width: 80%;
@@ -82,31 +85,41 @@ const Total = styled.h2`
 
 function Cart() {
   const dispatch = useAppDispatch();
-  const total = useAppSelector((state) => state.cartReducer.total);
+  const total = useAppSelector(totalAmount);
 
   const itemsOrdered = useAppSelector(
     (state) => state.cartReducer.itemsOrdered
   );
 
+  const removeAnItem = (item: Iitem) => dispatch(remove(item));
+  const addAnItem = (item: Iitem) => dispatch(add(item));
+
   return (
     <CartContainer>
       <h1>Your Shopping cart</h1>
       <ItemsContainer>
-        {itemsOrdered &&
-          itemsOrdered.map((item) => (
-            <CartItem key={item.id}>
-              <ImgCart src={item.image} alt={`${item.title}`} />
+        {itemsOrdered.length > 0 ? (
+          itemsOrdered.map((element) => (
+            <CartItem key={element.item.id}>
+              <ImgCart src={element.item.image} alt={`${element.item.title}`} />
               <InfoItemCart>
-                <h3>{`${item.title.substring(0, 18)}...`}</h3>
-                <p>$ {`${item.price}`}</p>
+                <h3>{`${element.item.title.substring(0, 18)}...`}</h3>
+                <p>$ {`${element.item.price * element.quantity}`}</p>
                 <ButtonRow>
-                  <ButtonCardCart>-</ButtonCardCart>
-                  <span>0</span>
-                  <ButtonCardCart>+</ButtonCardCart>
+                  <ButtonCardCart onClick={() => removeAnItem(element.item)}>
+                    -
+                  </ButtonCardCart>
+                  <span>{element.quantity}</span>
+                  <ButtonCardCart onClick={() => addAnItem(element.item)}>
+                    +
+                  </ButtonCardCart>
                 </ButtonRow>
               </InfoItemCart>
             </CartItem>
-          ))}
+          ))
+        ) : (
+          <div></div>
+        )}
       </ItemsContainer>
 
       <div>

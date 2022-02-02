@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiMenu, HiOutlineShoppingCart } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useAppSelector } from '../../store/hooks';
 
 const HeaderContainer = styled.div`
   background: black;
@@ -129,9 +130,23 @@ const MobileNavLink = styled.li`
   }
 `;
 
+const NbrItems = styled.div`
+  position: absolute;
+  bottom: -11px;
+  left: 12px;
+  background: #a9a9a9;
+  color: white;
+  border-radius: 36px;
+  padding: 6px;
+  font-size: 10px;
+`;
+
 const Header = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const nbrItemsInCart = useAppSelector(
+    (state) => state.cartReducer.totalNbrArticles
+  );
 
   const handleMobilLinkClick = (e: React.MouseEvent, path: string) => {
     if (isOpen) {
@@ -151,9 +166,12 @@ const Header = () => {
         <NavLink>
           <Link to='/shops'>Shops</Link>
         </NavLink>
-        <MenuButtonCart onClick={(e) => navigate(`/cart`)}>
-          <HiOutlineShoppingCart size={'24'} />
-        </MenuButtonCart>
+        <div style={{ position: 'relative' }}>
+          <MenuButtonCart onClick={(e) => navigate(`/cart`)}>
+            <HiOutlineShoppingCart size={'24'} />
+          </MenuButtonCart>
+          {nbrItemsInCart > 0 ? <NbrItems>{nbrItemsInCart}</NbrItems> : null}
+        </div>
       </Nav>
       <MenuButton onClick={(e) => setIsOpen(!isOpen)}>
         {isOpen ? <AiOutlineClose size={'24'} /> : <HiMenu size={'24'} />}
