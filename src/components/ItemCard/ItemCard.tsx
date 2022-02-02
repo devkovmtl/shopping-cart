@@ -37,7 +37,7 @@ const CardBottomContainer = styled.div`
   }
 `;
 
-const ButtonCard = styled.button`
+export const ButtonCard = styled.button`
   padding: 1.2rem 1.8rem;
   background: black;
   color: white;
