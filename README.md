@@ -2,7 +2,7 @@
 
 from The Odin Project's [curriculum](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript/lessons/shopping-cart)
 
-<!-- Project [demo](https://devkovmtl.github.io//) -->
+Project [demo](http://devkovmtl.github.io/shopping-cart)
 
 ## Overview
 
